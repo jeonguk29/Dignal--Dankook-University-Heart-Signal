@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUI
 
 struct UserInfoView: View {
     @State private var name = ""

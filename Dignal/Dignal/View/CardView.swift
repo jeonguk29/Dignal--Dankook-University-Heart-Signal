@@ -8,35 +8,29 @@
 import SwiftUI
 
 struct CardView: View, Identifiable {
-    
     let id = UUID()
-    var honeyMoon: Destination
-    
+    var imageName: String
+    var question: String
+    var answer: String
+
     var body: some View {
-        Image(honeyMoon.image)
+        Image(imageName)
             .resizable()
             .cornerRadius(24)
             .scaledToFit()
-            .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity)
+            .frame(minWidth: 0, maxWidth: .infinity)
             .overlay(
                 VStack(alignment: .center, spacing: 12) {
-                    Text(honeyMoon.place.uppercased())
+                    Text(question)
                         .foregroundColor(Color.white)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .font(.title2)
+                        .fontWeight(.semibold)
                         .shadow(radius: 1)
                         .padding(.horizontal, 18)
-                        .padding(.vertical, 4)
-                        .overlay(
-                            Rectangle()
-                                .fill(Color.white)
-                                .frame(height: 1),
-                            alignment: .bottom
-                        )
-                    
-                    Text(honeyMoon.country.uppercased())
+
+                    Text(answer)
                         .foregroundColor(Color.black)
-                        .font(.footnote)
+                        .font(.title)
                         .fontWeight(.bold)
                         .frame(minWidth: 85)
                         .padding(.horizontal, 10)
@@ -45,15 +39,20 @@ struct CardView: View, Identifiable {
                             Capsule().fill(Color.white)
                         )
                 }
-                    .frame(minWidth: 280)
-                    .padding(.bottom, 50),
+                .frame(minWidth: 280)
+                .padding(.bottom, 50),
                 alignment: .bottom
             )
-        
     }
 }
 
+
+// ✅ 프리뷰
 #Preview {
-    CardView(honeyMoon: destinationArray[1])
-        .previewLayout(.fixed(width: 375, height: 600))
+    CardView(
+        imageName: "photo-athens-greece",
+        question: "상대방 이름은?",
+        answer: "정정욱"
+    )
+    .previewLayout(.fixed(width: 375, height: 600))
 }
