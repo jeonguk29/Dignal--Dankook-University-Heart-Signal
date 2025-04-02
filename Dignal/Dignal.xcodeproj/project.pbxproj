@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2FE600C32D9B00B400163C73 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE600C22D9B00B400163C73 /* FirebaseAuth */; };
+		2FE600C52D9B00B400163C73 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE600C42D9B00B400163C73 /* FirebaseCore */; };
+		2FE600C72D9B00B400163C73 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE600C62D9B00B400163C73 /* FirebaseDatabase */; };
+		2FE600C92D9B00B400163C73 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2FE600C82D9B00B400163C73 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2F65F7152D95A1FF00877B3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE600C72D9B00B400163C73 /* FirebaseDatabase in Frameworks */,
+				2FE600C92D9B00B400163C73 /* FirebaseFirestore in Frameworks */,
+				2FE600C52D9B00B400163C73 /* FirebaseCore in Frameworks */,
+				2FE600C32D9B00B400163C73 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +123,10 @@
 			);
 			name = Dignal;
 			packageProductDependencies = (
+				2FE600C22D9B00B400163C73 /* FirebaseAuth */,
+				2FE600C42D9B00B400163C73 /* FirebaseCore */,
+				2FE600C62D9B00B400163C73 /* FirebaseDatabase */,
+				2FE600C82D9B00B400163C73 /* FirebaseFirestore */,
 			);
 			productName = Dignal;
 			productReference = 2F65F7032D95A1FC00877B3C /* Dignal.app */;
@@ -195,6 +210,9 @@
 			);
 			mainGroup = 2F65F6FA2D95A1FC00877B3C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2F65F7042D95A1FC00877B3C /* Products */;
 			projectDirPath = "";
@@ -393,11 +411,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Dignal/Dignal.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dignal/Preview Content\"";
-				DEVELOPMENT_TEAM = 5KA6J79S24;
+				DEVELOPMENT_TEAM = 9S8KMMC3YH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -409,8 +428,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = woogie.Dignal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dankook.dignal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -425,11 +445,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Dignal/Dignal.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dignal/Preview Content\"";
-				DEVELOPMENT_TEAM = 5KA6J79S24;
+				DEVELOPMENT_TEAM = 9S8KMMC3YH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -441,8 +462,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = woogie.Dignal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dankook.dignal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -559,6 +581,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2FE600C22D9B00B400163C73 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2FE600C42D9B00B400163C73 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		2FE600C62D9B00B400163C73 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		2FE600C82D9B00B400163C73 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FE600C12D9B00B400163C73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2F65F6FB2D95A1FC00877B3C /* Project object */;
 }

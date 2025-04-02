@@ -7,8 +7,15 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
+import CryptoKit
 
 struct LoginView: View {
+    
+    @EnvironmentObject var appState: AppState  // ✅ 전역 상태
+    @StateObject private var viewModel = LoginViewModel()
+    
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -31,23 +38,23 @@ struct LoginView: View {
                 .scaledToFit()
                 .frame(width: 250, height: 250)
                 .padding(.top, 20)
-
-
+            
+            
             // Apple 로그인 버튼
             SignInWithAppleButton(
                 onRequest: { request in
-                    // 요청 설정
                     request.requestedScopes = [.fullName, .email]
+                    viewModel.currentNonce = randomNonceString()
+                    request.nonce = sha256(viewModel.currentNonce!)
                 },
                 onCompletion: { result in
-                    switch result {
-                    case .success(let authResults):
-                        print("Apple 로그인 성공: \(authResults)")
-                    case .failure(let error):
-                        print("Apple 로그인 실패: \(error.localizedDescription)")
-                    }
+                    viewModel.appState = appState  // 주입
+                    viewModel.handleAppleLogin(result: result)
                 }
             )
+            .signInWithAppleButtonStyle(.white)
+            .frame(height: 50)
+            .padding(.horizontal, 40)
             .signInWithAppleButtonStyle(.white)
             .frame(height: 50)
             .padding(.horizontal, 40)
@@ -58,6 +65,44 @@ struct LoginView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("mainColor")) // 필요 시 배경 컬러 추가
     }
+    
+    func sha256(_ input: String) -> String {
+        let data = Data(input.utf8)
+        let hashed = SHA256.hash(data: data)
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
+    }
+
+    func randomNonceString(length: Int = 32) -> String {
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0..<16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+
+        return result
+    }
+
 }
 
 #Preview {
